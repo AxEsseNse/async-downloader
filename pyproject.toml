@@ -1,0 +1,38 @@
+[tool.nitpick]
+style = [
+    "https://gitea.radium.group/radium/project-configuration/raw/branch/master/nitpick/all.toml"
+]
+[tool.poetry]
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group]
+[tool.poetry.group.dev.dependencies]
+wemake-python-styleguide = "^0.18.0"
+flake8-pytest-style = "^1.7.2"
+flake8-annotations = "^3.0.1"
+flake8-logging-format = "^0.9.0"
+flake8-spellcheck = "^0.28.0"
+isort = "^5.7.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
+pytest-sugar = "^0.9.7"
+Faker = "^20.1.0"
+pytest-snapshot = "^0.9.0"
+
+[tool.poetry.group.test.dependencies.pytest-xdist]
+extras = ["psutil"]
+version = "^3.5.0"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+use_parentheses = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test*.py"
+addopts = "-rsxX -l --tb=short --strict-markers --doctest-modules"
+xfail_strict = "true"
