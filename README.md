@@ -14,8 +14,8 @@ Async downloader of Gitea repositories
 2. Создайте папку для проекта и перейдите в неё:
 
     ```sh
-    mkdir async-downloader
-    cd async-downloader
+    mkdir komkad-test-sinitskiy
+    cd komkad-test-sinitskiy
     ```
 
 3. Скачайте репозиторий:
