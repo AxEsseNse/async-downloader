@@ -5,7 +5,6 @@ Async downloader of Gitea repositories
 - [Инструкция по установке](#инструкция-по-установке)
 - [Запуск](#запуск)
 - [Тестирование](#тестирование)
-- [Конфигурация](#конфигурация)
 - [Проверка линтером](#проверка-линтером)
 
 ## Инструкция по установке
@@ -34,7 +33,7 @@ Async downloader of Gitea repositories
 5. Активируйте виртуальное окружение:
 
     ```sh
-    .\venv\Scripts\Activate.ps1  # для Windows PowerShell
+    .\.venv\Scripts\Activate.ps1  # для Windows PowerShell
     source venv/bin/activate  # для Unix
     ```
 
@@ -68,17 +67,9 @@ Async downloader of Gitea repositories
     coverage html
     ```
 
-## Конфигурация
-
-1. Подтягиваем конфигурацию.
-
-    ```sh
-    nitpick fix
-    ```
-
 ## Проверка линтером
 
-1. Проверка wemake-python-styleguide. (noqa для приватных атрибутов)
+1. Проверка wemake-python-styleguide
 
     ```sh
     flake8 .\main.py
