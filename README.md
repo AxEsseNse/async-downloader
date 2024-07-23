@@ -59,7 +59,7 @@ Async downloader of Gitea repositories
     pytest
     ```
 
-2. Оценка покрытия тестами. Последняя команда создаем html для наглядности
+2. Оценка покрытия тестами. Последняя команда создает html для наглядности
 
     ```sh
     coverage run -m pytest
