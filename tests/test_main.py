@@ -84,7 +84,7 @@ class TestGiteaAsyncDownloader:
     """Содержит тесты методов класса GiteaAsyncDownloader."""
 
     @pytest.mark.asyncio
-    async def test_download_files(self, mock_logger):  # noqa: WPS210
+    async def test_download_files(self, mock_logger):
         """
         Тестирует метод download_files.
 
@@ -144,8 +144,8 @@ class TestGiteaAsyncDownloader:
         :param mock_logger: Мокнутый логер для проверки логов.
         """
         downloader = GiteaAsyncDownloader(amount_workers=1)
-        downloader._url_repository = MOCKED_URL  # noqa: WPS437
-        downloader._aiohttp_session = aiohttp.ClientSession()  # noqa: WPS437
+        downloader._url_repository = MOCKED_URL
+        downloader._aiohttp_session = aiohttp.ClientSession()
 
         # Ожидаемые данные
         mock_response = {
@@ -157,14 +157,14 @@ class TestGiteaAsyncDownloader:
         }
 
         async with aiohttp.ClientSession() as session:
-            downloader._aiohttp_session = session  # noqa: WPS437
+            downloader._aiohttp_session = session
 
             with aioresponses() as mocked_responses:
                 mocked_responses.get(
-                    downloader._url_repository,  # noqa: WPS437
+                    downloader._url_repository,
                     payload=mock_response,
                 )
-                await downloader._fetch_all_file_paths()  # noqa: WPS437
+                await downloader._fetch_all_file_paths()
 
                 # Проверка, что лог содержит ожидаемые сообщения
                 mock_logger.info.assert_called_once_with(
@@ -173,7 +173,7 @@ class TestGiteaAsyncDownloader:
                     ),
                 )
 
-        assert downloader._file_paths == [  # noqa: WPS437
+        assert downloader._file_paths == [
             'test_path_1',
             'test_path_2',
         ]
@@ -194,10 +194,10 @@ class TestGiteaAsyncDownloader:
             side_effect=aiohttp.ClientError(MOCKED_CLIENT_ERROR_TEXT),
         ):
             async with aiohttp.ClientSession() as session:
-                downloader._aiohttp_session = session  # noqa: WPS437
+                downloader._aiohttp_session = session
 
-                await downloader._fetch_all_file_paths()  # noqa: WPS437
-                assert not downloader._file_paths  # noqa: WPS437
+                await downloader._fetch_all_file_paths()
+                assert not downloader._file_paths
 
                 # Проверка, что лог содержит ожидаемые сообщения
                 mock_logger.error.assert_called_once_with(
@@ -213,11 +213,11 @@ class TestGiteaAsyncDownloader:
         expected_data = b'test_data'
 
         async with aiohttp.ClientSession() as session:
-            downloader._aiohttp_session = session  # noqa: WPS437
+            downloader._aiohttp_session = session
 
             with aioresponses() as mocked_responses:
                 mocked_responses.get(MOCKED_URL, body=expected_data)
-                file_data = await downloader._fetch_file_data(  # noqa: WPS437
+                file_data = await downloader._fetch_file_data(
                     MOCKED_URL,
                 )
 
@@ -239,9 +239,9 @@ class TestGiteaAsyncDownloader:
             side_effect=aiohttp.ClientError(MOCKED_CLIENT_ERROR_TEXT),
         ):
             async with aiohttp.ClientSession() as session:
-                downloader._aiohttp_session = session  # noqa: WPS437
+                downloader._aiohttp_session = session
 
-                file_data = await downloader._fetch_file_data(  # noqa: WPS437
+                file_data = await downloader._fetch_file_data(
                     MOCKED_URL,
                 )
                 assert file_data is None
@@ -262,7 +262,7 @@ class TestGiteaAsyncDownloader:
 
             downloader = GiteaAsyncDownloader(amount_workers=1)
 
-            await downloader._save_data_to_file(  # noqa: WPS437
+            await downloader._save_data_to_file(
                 test_file_path,
                 TEST_BYTE_CONTENT,
             )
@@ -292,7 +292,7 @@ class TestGiteaAsyncDownloader:
         ):
             file_path = 'mock_file_path'
             file_data = b'mock_data'
-            await downloader._save_data_to_file(  # noqa: WPS437
+            await downloader._save_data_to_file(
                 file_path,
                 file_data,
             )
@@ -336,7 +336,7 @@ class TestAsyncHashSha256Calculator:
             )
 
     @pytest.mark.asyncio
-    async def test_get_hash_files_in_directory(  # noqa: WPS210
+    async def test_get_hash_files_in_directory(
         self,
         mock_logger,
     ):
@@ -379,7 +379,7 @@ class TestAsyncHashSha256Calculator:
             'aiofiles.open',
             side_effect=Exception('mocked exception'),
         ):
-            hash_result = await calculator._calculate_sha256(  # noqa: WPS437
+            hash_result = await calculator._calculate_sha256(
                 'mock_file_path',
             )
             assert hash_result is None
