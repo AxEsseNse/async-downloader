@@ -63,19 +63,6 @@ asyncio - для написания асинхронной логики рабо
 
 
 
->>>Как вы настраивали свой проект для соответствия конфигурации nitpick, указанной в задании?
->>>Были ли трудности при настройке?
-
-Создал файл pyproject.toml, в нем прописал
-[tool.nitpick]
-style = [
-    "https://gitea.radium.group/radium/project-configuration/raw/branch/master/nitpick/all.toml"
-]
-Установил библиотеку nitpick (pip install nitpick)
-Выполнил команду nitpick fix
-
-
-
 >>>Какие инструменты использовали для измерения 100% покрытия тестами?
 
 Библиотеку coverage. Через неё запустил pytest, сделал report, далее в удобном формате сформировал html.
